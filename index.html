@@ -4,48 +4,116 @@
   <meta charset="utf-8">
   <title>Community Support Services – Elections widget</title>
 
-  <style>
+    <style>
     :root{
-      --accent:#8BA4D5;    /* KHS blue – swap for taupe #9B8579 if you prefer */
-      --text:#2B2B2B;
-      --bg:#FFFFFF;
-      --stripe:#F5F7FA;
-      --radius:6px;
-      --shadow:0 1px 3px rgba(0,0,0,.1);
-      font-family:"Helvetica Neue",Arial,sans-serif;
+      --accent: #8BA4D5;    /* KHS blue – swap for taupe #9B8579 if you prefer */
+      --text:   #2B2B2B;
+      --bg:     #FFFFFF;
+      --stripe: #F5F7FA;
+      --radius: 6px;
+      --shadow: 0 1px 3px rgba(0,0,0,.1);
+      font-family: "Helvetica Neue", Arial, sans-serif;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
 
-    .widget{max-width:960px;margin:3rem auto;padding:0 1rem;}
+    * { box-sizing: border-box; }
 
-    /* TAB BAR ----------------------------------------------*/
-    .tabs{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:1rem}
-    .tabs button{
-      flex:1 1 auto;min-width:110px;
-      border:1px solid var(--accent);background:var(--bg);color:var(--accent);
-      padding:.65rem 1rem;font-size:1rem;font-weight:600;
-      border-radius:var(--radius);cursor:pointer;transition:.15s;
+    /* make the iframe/page transparent */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--text);
     }
-    .tabs button[aria-selected="true"],.tabs button:hover{
-      background:var(--accent);color:#fff;
+
+    /* allow the widget to stretch full‑width */
+    .widget {
+      width: 100%;
+      max-width: none;
+      margin: 3rem auto;
+      padding: 0 1rem;
     }
-    .tabs button:focus{outline:2px solid var(--accent)}
 
-    /* PANELS ----------------------------------------------*/
-    .panel{display:none;animation:fade .3s}
-    .panel[data-active]{display:block}
-    @keyframes fade{from{opacity:0}to{opacity:1}}
+    /* TAB BAR ---------------------------------------------- */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+      margin-bottom: 1rem;
+    }
+    .tabs button {
+      flex: 1 1 auto;
+      min-width: 110px;
+      border: 1px solid var(--accent);
+      background: var(--bg);
+      color: var(--accent);
+      padding: .65rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: .15s;
+    }
+    .tabs button[aria-selected="true"],
+    .tabs button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    .tabs button:focus {
+      outline: 2px solid var(--accent);
+    }
 
-    /* TABLE ----------------------------------------------*/
-    table{width:100%;border-collapse:collapse;box-shadow:var(--shadow);
-          border-radius:var(--radius);overflow:hidden}
-    thead{background:var(--accent);color:#fff}
-    th,td{padding:.75rem 1rem;text-align:left;font-size:.95rem}
-    tbody tr:nth-child(odd){background:var(--stripe)}
-    tbody tr:hover{background:rgba(0,119,200,.08)}
-    @media(max-width:650px){table{display:block;overflow-x:auto}}
+    /* PANELS ---------------------------------------------- */
+    .panel {
+      display: none;
+      animation: fade .3s;
+    }
+    .panel[data-active] {
+      display: block;
+    }
+    @keyframes fade { from { opacity:0 } to { opacity:1 } }
+
+    /* TABLE ---------------------------------------------- */
+    table {
+      width: 100%;
+      table-layout: fixed;          /* distribute widths per your col settings */
+      border-collapse: collapse;
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    /* force column widths: service=20%, desc=45%, providers=35% */
+    th:nth-child(1),
+    td:nth-child(1) { width: 20%; }
+    th:nth-child(2),
+    td:nth-child(2) { width: 45%; }
+    th:nth-child(3),
+    td:nth-child(3) { width: 35%; }
+
+    thead {
+      background: var(--accent);
+      color: #fff;
+    }
+    th, td {
+      padding: .75rem 1rem;
+      text-align: left;
+      font-size: .95rem;
+    }
+    tbody tr:nth-child(odd) {
+      background: var(--stripe);
+    }
+    tbody tr:hover {
+      background: rgba(0,119,200,.08);
+    }
+
+    /* responsive: still allow horizontal scroll on tiny screens */
+    @media(max-width:650px) {
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
   </style>
+
 </head>
 <body>
   <div class="widget">
