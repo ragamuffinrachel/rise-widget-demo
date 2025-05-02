@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flash-Card demo</title>
+  <style>
+    *{box-sizing:border-box} html,body{margin:0;padding:0;font-family:system-ui}
+    flash-card{display:block;width:100%;max-width:420px;margin:4rem auto}
+    flash-card article{border:2px solid #2b2b2b;padding:2rem;border-radius:8px;
+                       background:#fafafa;cursor:pointer;transition:all .2s}
+    flash-card[data-show="answer"] article{background:#9b8579;color:#fff}
+  </style>
+  <script type="module">
+    class FlashCard extends HTMLElement {
+      connectedCallback() {
+        const q = this.getAttribute('question') ?? 'Question';
+        const a = this.getAttribute('answer')   ?? 'Answer';
+        this.innerHTML = `<article>${q}</article>`;
+        this.onclick = () => this.toggle(q,a);
+      }
+      toggle(q,a){
+        const showing = this.dataset.show === 'answer';
+        this.dataset.show = showing ? 'question':'answer';
+        this.querySelector('article').textContent = showing ? q : a;
+      }
+    }
+    customElements.define('flash-card', FlashCard);
+  </script>
+</head>
+<body>
+  <flash-card question="What’s HIPAA stand for?" answer="Health Insurance Portability and Accountability Act"></flash-card>
+</body>
+</html>
