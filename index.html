@@ -3,45 +3,42 @@
 <head>
   <meta charset="utf-8">
   <title>Community Support Services – Elections widget</title>
-   <!-- Typekit for Termina Light -->
+
+  <!-- Typekit for Termina Light -->
   <link rel="stylesheet" href="https://use.typekit.net/kpn8afx.css">
   <!-- Google Fonts: Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
   <style>
-
-    <style>
-    :root{
-      --accent: #8BA4D5;    /* KHS blue – swap for taupe #9B8579 if you prefer */
-      --text:   #2B2B2B;
-      --bg:     #FFFFFF;
-      --stripe: #F5F7FA;
-      --radius: 6px;
-      --shadow: 0 1px 3px rgba(0,0,0,.1);
-      font-family: "Helvetica Neue", Arial, sans-serif;
+    :root {
+      --accent:  #8BA4D5;
+      --text:    #2B2B2B;
+      --bg:      #FFFFFF;
+      --stripe:  #F5F7FA;
+      --radius:  6px;
+      --shadow:  0 1px 3px rgba(0,0,0,.1);
     }
-
-    * { box-sizing: border-box; }
-
-    /* make the iframe/page transparent */
+    *, *::before, *::after { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
       background: transparent;
       color: var(--text);
+      font-family: 'Montserrat', sans-serif;
     }
-
-    /* allow the widget to stretch full‑width */
+    .tabs button,
+    th {
+      font-family: 'termina', sans-serif;
+      font-weight: 300;
+    }
     .widget {
       width: 85%;
       min-width: 600px;
       max-width: 1000px;
       margin: 3rem auto;
     }
-
-
-    /* TAB BAR ---------------------------------------------- */
     .tabs {
       display: flex;
       flex-wrap: wrap;
@@ -56,7 +53,6 @@
       color: var(--accent);
       padding: .65rem 1rem;
       font-size: 1rem;
-      font-weight: 600;
       border-radius: var(--radius);
       cursor: pointer;
       transition: .15s;
@@ -66,78 +62,47 @@
       background: var(--accent);
       color: #fff;
     }
-    .tabs button:focus {
-      outline: 2px solid var(--accent);
+    .tabs button:focus { outline: 2px solid var(--accent); }
+
+    .panel { display: none; }
+    .panel[data-active] {
+      display: block;
+      animation: slideIn 0.3s ease-in-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* PANELS ---------------------------------------------- */
-    /* sleeker slide‑in + fade */
-.panel {
-  display: none;               /* keep it hidden by default */
-}
-.panel[data-active] {
-  display: block;              /* show when active */
-  animation: slideIn 0.3s ease-in-out;
-}
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-    /* TABLE ---------------------------------------------- */
     table {
       width: 100%;
-      table-layout: fixed;          /* distribute widths per your col settings */
+      table-layout: fixed;
       border-collapse: collapse;
       box-shadow: var(--shadow);
       border-radius: var(--radius);
       overflow: hidden;
     }
-    /* force column widths: service=20%, desc=45%, providers=35% */
-    th:nth-child(1),
-    td:nth-child(1) { width: 20%; }
-    th:nth-child(2),
-    td:nth-child(2) { width: 45%; }
-    th:nth-child(3),
-    td:nth-child(3) { width: 35%; }
+    th:nth-child(1), td:nth-child(1) { width: 20%; }
+    th:nth-child(2), td:nth-child(2) { width: 45%; }
+    th:nth-child(3), td:nth-child(3) { width: 35%; }
 
-    thead {
-      background: var(--accent);
-      color: #fff;
-    }
+    thead { background: var(--accent); color: #fff; }
     th, td {
       padding: .75rem 1rem;
       text-align: left;
       font-size: .95rem;
     }
-    tbody tr:nth-child(odd) {
-      background: var(--stripe);
-    }
-    tbody tr:hover {
-      background: rgba(0,119,200,.08);
-    }
+    tbody tr:nth-child(odd) { background: var(--stripe); }
+    tbody tr:hover { background: rgba(0,119,200,.08); }
 
-    /* responsive: still allow horizontal scroll on tiny screens */
     @media(max-width:650px) {
-      table {
-        display: block;
-        overflow-x: auto;
-      }
+      table { display: block; overflow-x: auto; }
     }
   </style>
-
 </head>
 <body>
   <div class="widget">
 
-    <!-- TAB BAR -->
     <div class="tabs" role="tablist">
       <button role="tab" id="t0" aria-controls="p0" aria-selected="true">1/1/22</button>
       <button role="tab" id="t1" aria-controls="p1">1/1/23</button>
@@ -146,7 +111,6 @@
       <button role="tab" id="t4" aria-controls="p4">7/1/24</button>
     </div>
 
-    <!-- ============ 1 JAN 2022 =================================== -->
     <section class="panel" id="p0" role="tabpanel" aria-labelledby="t0" data-active>
       <table>
         <thead><tr><th>Service</th><th>Description</th><th>Contracted Providers</th></tr></thead>
@@ -188,8 +152,8 @@
             <td>Short-Term Post-Hospitalization</td>
             <td>Temporary shelter while recovering from a procedure/illness, plus assistance in gaining housing for greater independence.</td>
             <td>
-              1. Papo Hernandez, Respite, Rest &amp; Recovery Home<br>
-              2. Good Samaritan Healing Center (Bakersfield &amp; Delano)
+              1. Papo Hernandez, Respite, Rest &amp;amp; Recovery Home<br>
+              2. Good Samaritan Healing Center (Bakersfield &amp;amp; Delano)
             </td>
           </tr>
           <tr>
@@ -197,7 +161,7 @@
             <td>Home modifications (e.g., air purifiers) to support a healthy lifestyle for members living with asthma.</td>
             <td>
               1. Central California Asthma Collaborative<br>
-              2. SD Consulting (Bakersfield &amp; Delano)<br>
+              2. SD Consulting (Bakersfield &amp;amp; Delano)<br>
               3. Mercy Hospital
             </td>
           </tr>
@@ -205,7 +169,6 @@
       </table>
     </section>
 
-    <!-- ============ 1 JAN 2023 =================================== -->
     <section class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
       <table>
         <thead><tr><th>Service</th><th>Description</th><th>Contracted Providers</th></tr></thead>
@@ -229,102 +192,4 @@
               5. Hunger Not Impossible Inc dba Bento Foods<br>
               6. Sunterra Inc dba Project Food Box
             </td>
-          </tr>
-          <tr>
-            <td>Sobering Centers</td>
-            <td>Alternative destination for publicly intoxicated individuals, avoiding ER or jail transports.</td>
-            <td>
-              1. Kern Behavioral Health &amp; Recovery Services<br>
-              2. CityServe Network (2 locations)
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- ============ 1 JUL 2023 =================================== -->
-    <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
-      <table>
-        <thead><tr><th>Service</th><th>Description</th><th>Contracted Providers</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Nursing Facility Transition / Diversion to Assisted Living Facilities</td>
-            <td>Helps individuals live in the community and avoid institutionalization; supports transitions back to home-like settings.</td>
-            <td>
-              1. Bakersfield Community Healthcare<br>
-              2. Pathway Assisted Living
-            </td>
-          </tr>
-          <tr>
-            <td>Community Transition Services / Nursing Facility Transition to a Home</td>
-            <td>Financial assistance (up to $7,500) and information for members moving from medical facilities back to their own homes.</td>
-            <td>Same as above (1-2).</td>
-          </tr>
-          <tr>
-            <td>Personal Care &amp; Homemaker Services</td>
-            <td>Support with ADLs such as bathing, dressing, toileting and feeding.</td>
-            <td>
-              1. 24 Hour Home Care<br>
-              2. SD Healthcare Consulting (2 locations)
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- ============ 1 JAN 2024 =================================== -->
-    <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
-      <table>
-        <thead><tr><th>Service</th><th>Description</th><th>Contracted Providers</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Day Habilitation Programs</td>
-            <td>Non-facility programs that build self-help and adaptive skills for successful community living.</td>
-            <td>
-              1. Good Samaritan Healing Center (2 locations)<br>
-              2. CAPK<br>
-              3. Kern Psychiatric Wellness Center
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- ============ 1 JUL 2024 =================================== -->
-    <section class="panel" id="p4" role="tabpanel" aria-labelledby="t4">
-      <table>
-        <thead><tr><th>Service</th><th>Description</th><th>Contracted Providers</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Environmental Accessibility Adaptation</td>
-            <td>Physical home modifications (“home mods”) necessary to ensure the member’s well-being.</td>
-            <td>1. Habitat for Humanity</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-  </div>
-
-  <!-- SCRIPT (same logic as before) -->
-  <script>
-    const tabs   = [...document.querySelectorAll('[role="tab"]')];
-    const panels = [...document.querySelectorAll('[role="tabpanel"]')];
-
-    tabs.forEach(tab => tab.addEventListener('click', () => activateTab(tab)));
-
-    // arrow-key navigation
-    document.querySelector('.tabs').addEventListener('keydown', e=>{
-      const i = tabs.indexOf(document.activeElement);
-      if(i<0) return;
-      if(e.key==='ArrowRight') tabs[(i+1)%tabs.length].focus();
-      if(e.key==='ArrowLeft')  tabs[(i+tabs.length-1)%tabs.length].focus();
-    });
-
-    function activateTab(tab){
-      tabs.forEach(t => t.setAttribute('aria-selected', t===tab));
-      panels.forEach(p => p.toggleAttribute('data-active', p.id===tab.getAttribute('aria-controls')));
-    }
-  </script>
-</body>
-</html>
+          ```
